@@ -1,0 +1,56 @@
+<main class="col-md-12 row  col-sm-12 pt-0">
+  <ol class="breadcrumb">
+    <li><a routerLink="/">Home</a></li>
+    <li class="active"><span>Cart</span></li>
+  </ol>
+  <div class="panel panel-default cart" *ngIf="cart && cart.total_items>0">
+    <div class="panel-heading">My Cart</div>
+      <!--<div class="row">
+        <div class="col-md-offset-10 col-md-1">Total</div>
+        <div class="col-md-offset-11 col-md-1">{{cart.new_price}}€</div>
+      </div>-->
+    <hr>
+    <div class="panel-body">
+    <div class="cart-item row">
+      <div class="col-md-10" style="text-align:center;">Product</div>
+      <div class="col-md-1">Quantity</div>
+      <div class="col-md-1">Price</div>
+    </div>
+      <div *ngFor="let item of cart.items; let i = index" class="row cart-item">
+        <span class="col-md-1">
+          <button md-fab class="btn btn-default" (click)="removeItemFromCart(i)">
+          <i class="fa fa-trash fa-2" aria-hidden="true"></i></button>
+        </span>
+        <div class="col-md-2">
+            <a [routerLink]="['/item', item.isbn]" >
+              <img src="{{item.image}}" width="120" height="145"/>
+            </a>
+        </div>
+        <div class="col-md-7"><h3><a [routerLink]="['/item', item.isbn]">{{item.title}}</a></h3>
+          <br>
+          <div class="col-md-8 row"> 
+            <hr>
+            <button [disabled]="item.quantity==1" md-mini-fab class="btn btn-default"  (click)="decreaseItemQuantity(i)"> 
+              <i class="fa fa-minus fa-2" aria-hidden="true"></i>
+            </button>
+            <span class="label label-info">{{item.quantity}}</span>
+            <button md-mini-fab class="btn btn-default" (click)="increaseItemQuantity(i)">
+              <i  class="fa fa-plus fa-2" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-1">{{item.quantity}}</div>
+        <div class="col-md-1">{{item.quantity*item.price}}€</div>
+      </div>
+    <div class="col-md-offset-9 col-md-1">Total</div><div class="col-md-2 text-success">{{cart.new_price}}€  &nbsp;
+      <del class="text-muted">{{cart.old_price}}€</del>
+    </div>
+    <div class="col-md-offset-9 col-md-1">Discount</div><div class="col-md-2">{{cart.offer_price}}€</div>
+    </div>
+  </div>
+
+  <div *ngIf="!cart || (cart && cart.total_items==0)">
+    <div class="alert alert-warning"> <i class="fa fa-opencart"></i><span> Your cart is empty</span></div>
+  </div>
+
+</main>

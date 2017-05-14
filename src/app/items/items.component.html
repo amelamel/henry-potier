@@ -1,0 +1,50 @@
+<nav class="col-sm-10 col-md-2 hidden-xs-down bg-faded sidebar">
+
+<md-card class="row">
+  <md-card-content>
+    <form class="row form-inline">
+        <md-input-container class="example-full-width">
+            <input mdInput placeholder="search"  [required]="true" #search_title>
+
+        </md-input-container>
+        <span md-fab (click)="searchItemsBytitle(search_title.value, search_price.value)"><i class="fa fa-search" style="cursor:pointer"></i></span>
+    </form>
+    <h4 class="example-h2">Price € :</h4>
+
+    <md-slider
+        #search_price
+        class="example-margin"
+        [disabled]="disabled"
+        [step]="true"
+        [thumb-label]="true"
+        [tick-interval]="5"
+        [value]="value"
+        [vertical]="false"
+        (click)="searchItemsByPrice(search_price.value, search_title.value)">
+    </md-slider>
+  </md-card-content>
+</md-card>
+</nav>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-0">
+
+<p-dataGrid [value]="items" *ngIf="items" [paginator]="true" [rows]="20">
+    <section class="row text-center placeholders">
+    <ng-template let-product pTemplate="item">        
+        <a md-button [routerLink]="['/item', product.isbn]"  style="padding:3px;" class="col-sm-6 col-md-4 card">
+            <div class="thumbnail">
+                <img src="{{product.cover}}" width="200" height="150"  alt="loading..">
+                <div class="caption  row">
+                    <hr>
+                    <label>{{product.title}}</label><br>
+                    <span class="text-muted">Henri potier</span>
+                    <hr>
+                    <b class="text-info">{{product.price}} €</b>
+                </div>
+            </div>
+        </a>
+    </ng-template>
+    </section>
+</p-dataGrid>
+ <div *ngIf="!items" class="well"> <img src="ajax-loader.gif"/></div>
+ <div *ngIf="is_error" class="alert alert-danger">We are so sorry, an error has occured when getting data </div>
+</main>

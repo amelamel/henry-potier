@@ -1,0 +1,48 @@
+<main class="col-md-12 row  col-sm-12 pt-0 item">
+  <ol class="breadcrumb">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/items">Books</a></li>
+    <li class="active"><span *ngIf="item">{{item.title}}</span></li>
+  </ol>
+<div class="row panel" *ngIf="item">
+  <md-card class="example-card col-md-4 col-sm-4">
+    <md-card-header>
+      
+      <md-card-title>{{item.title}}</md-card-title>
+      <md-card-subtitle>{{item.author}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image height="400" width="100" src="{{item.cover}}">
+    <md-card-content>
+      
+    </md-card-content>
+    
+  </md-card>
+  <!--quantity-->
+  <div class="col-md-6 col-sm-6 row">
+    <form>
+      <label class="label label-info">{{item.price}}€</label>&nbsp;
+      <hr>
+      <br>
+      <md-select placeholder="quantity"  name="quantity" [(ngModel)]="quantity">
+        <md-option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" [value]="i">
+          {{i}}
+        </md-option>
+      </md-select>
+      <button class="btn btn-default" md-raised-button (click)="addItemToCart()" [disabled]="!quantity">Add to cart</button>
+      
+    </form>
+    <hr>
+    <!--details-->
+    <md-tab-group [selectedIndex]="1">
+      <md-tab label="Author">
+        <div class="well">
+          {{item.author}}
+        </div>
+      </md-tab>
+      <md-tab *ngFor="let syn of item.synopsis; let i = index" label="Details {{i}}">
+        <div  class="jumbotron">{{syn}}</div>
+      </md-tab>
+</md-tab-group>
+  </div>
+</div>
+</main>

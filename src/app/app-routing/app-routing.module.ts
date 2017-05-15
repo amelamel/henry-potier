@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItemsModule} from '../items/items.module';
 import { ItemModule} from '../item/item.module';
 import { CartComponent } from "app/shared/cart/cart.component";
+import { PageNotFoundComponent } from "app/page-not-found/page-not-found.component";
 
 // Route Configuration
 export const routes: Routes = [
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
    	path: 'cart',
     component: CartComponent
+   },
+   {
+     path:'**',
+     component: PageNotFoundComponent
    }
 ];
 

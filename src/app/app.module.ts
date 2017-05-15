@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { SharedItemModule } from "./shared/item/shared-item.module";
 import { CartModule } from "app/shared/cart/cart.module";
 import { MdButtonModule } from '@angular/material';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     MdButtonModule,

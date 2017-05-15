@@ -17,6 +17,7 @@ import { CartService } from "app/shared/cart/cart.service";
 export class ItemComponent implements OnInit {
   private item:Item;
   private quantity:number = 0;
+  private is_error: boolean = false;
   constructor(private itemService:ItemService, private route: ActivatedRoute,
   private location: Location, public snackBar: MdSnackBar, private cartService:CartService) { 
   }
@@ -26,7 +27,7 @@ export class ItemComponent implements OnInit {
       .switchMap((params: Params) => this.itemService.getItem(params['isbn']))
       .subscribe(item => { this.item = item;
         this.item['author'] = "Henry Potier";
-      });
+      }, error => {this.is_error = true;});
     }
 
   addItemToCart(){

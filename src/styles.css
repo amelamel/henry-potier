@@ -88,3 +88,8 @@ main .panel.cart{
   background: url(loader-img.gif) 50% no-repeat;
   border-radius: 5px;
 }
+div.not-found{
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}

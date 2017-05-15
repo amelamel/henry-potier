@@ -15,9 +15,9 @@ import { CartService } from "app/shared/cart/cart.service";
    encapsulation: ViewEncapsulation.None,
 })
 export class ItemComponent implements OnInit {
-  private item:Item;
-  private quantity:number = 0;
-  private is_error: boolean = false;
+  public item:Item;
+  public quantity:number = 0;
+  public is_error: boolean = false;
   constructor(private itemService:ItemService, private route: ActivatedRoute,
   private location: Location, public snackBar: MdSnackBar, private cartService:CartService) { 
   }

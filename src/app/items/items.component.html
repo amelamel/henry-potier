@@ -14,11 +14,10 @@
     <md-slider
         #search_price
         class="example-margin"
-        [disabled]="disabled"
         [step]="true"
         [thumb-label]="true"
         [tick-interval]="5"
-        [value]="value"
+        [value]=""
         [vertical]="false"
         (click)="searchItemsByPrice(search_price.value, search_title.value)">
     </md-slider>

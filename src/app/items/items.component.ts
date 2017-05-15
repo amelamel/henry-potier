@@ -8,14 +8,13 @@ import { MdInputContainer } from '@angular/material';
   encapsulation: ViewEncapsulation.None,
 })
 export class ItemsComponent implements OnInit {
-  private items: Item[];
+  public items: Item[];
   constructor(private itemSrvice:ItemService) { }
-  private search_title: string;
-  private search_price: number;
-  private is_error:boolean = false;
+  public search_title: string;
+  public search_price: number;
+  public is_error:boolean = false;
   ngOnInit() {
     this.getItems();
-
   }
   // get items list by using itemService
   getItems():void{
